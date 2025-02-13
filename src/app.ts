@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
+import { StudentRoutes } from "./app/module/student/student.router";
 
 const app: Application = express();
 
@@ -9,6 +10,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+
+// application routes
+app.use("/api/v1/students", StudentRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send(
